@@ -6,7 +6,8 @@ namespace ChaiBot;
 public class TranslationService
 {
     private readonly IConfiguration _configuration;
-
+    
+    
     public TranslationService(IConfiguration configuration)
     {
         _configuration = configuration;
@@ -16,8 +17,8 @@ public class TranslationService
     {
         using (var httpClient = new HttpClient())
         {
+            var apiKey = Environment.GetEnvironmentVariable("MYMEMORY_API_KEY");
             // Odczytaj klucz API z konfiguracji
-            var apiKey = _configuration["MyMemoryApi:ApiKey"];
             if (string.IsNullOrEmpty(apiKey))
             {
                 throw new Exception("Klucz API MyMemory nie został znaleziony w konfiguracji.");
